@@ -17,8 +17,8 @@
        - Hoisted to the top of its scope.
        - not initialized (undefined by default)
        - re-declarable & updatable
-       ```javascript
-            // var
+       ```
+            
             function person() {
                 console.log(name) // undefined even with value
                 var name = 'Joy'
@@ -39,8 +39,8 @@
 - let: - Blocked scoped (within {}) as well as function scoped✅
        - Hoisted but not initialized (undefined by default)
        - updatable but not re-declarable in the same scope❌
-       ```javascript
-            // let
+       ```
+       
             function person() {
                 console.log(name) // ReferenceError: Cannot access 'name' before initialization
                 let name = 'Joy'
@@ -62,12 +62,11 @@
          - Must be initialized at declaration.
          - Cannot be re-assigned❌
          - Object properties or array elements can still be changed!
-        ```javascript
-                const obj = { name: "John" };
-                obj.name = "Jane"; // ✅Allowed (mutation, not reassignment)
         ```
-        ```javascript
-            // const
+        
+            const obj = { name: "John" };
+            obj.name = "Jane"; // ✅Allowed (mutation, not reassignment)
+            
             function person() {
                 console.log(name) // ReferenceError: Cannot access 'name' before initialization
                 name = 'sonett' // TypeError: Assignment to constant variable.
