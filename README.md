@@ -17,8 +17,7 @@
        - Hoisted to the top of its scope.
        - not initialized (undefined by default)
        - re-declarable & updatable
-       ```
-            
+    
             function person() {
                 console.log(name) // undefined even with value
                 var name = 'Joy'
@@ -35,12 +34,11 @@
 
             console.log(name) // ReferenceError: name is not defined
             person()
-        ```
+    
 - let: - Blocked scoped (within {}) as well as function scoped✅
        - Hoisted but not initialized (undefined by default)
        - updatable but not re-declarable in the same scope❌
-       ```
-       
+    
             function person() {
                 console.log(name) // ReferenceError: Cannot access 'name' before initialization
                 let name = 'Joy'
@@ -57,12 +55,11 @@
 
             console.log(name) // ReferenceError: name is not defined
             person()
-        ``` 
+            
 - const: - Blocked scoped (within {}) as well as function scoped✅
          - Must be initialized at declaration.
          - Cannot be re-assigned❌
          - Object properties or array elements can still be changed!
-        ```
         
             const obj = { name: "John" };
             obj.name = "Jane"; // ✅Allowed (mutation, not reassignment)
@@ -84,6 +81,106 @@
 
             console.log(name) // ReferenceError: name is not defined
             person()
-        ```
 
-## 
+## Datatypes in JS
+```js
+console.log(typeof 'Hello')     // string
+console.log(typeof 42)          // number
+console.log(typeof true)        // boolean
+console.log(typeof undefined)   // undefined
+console.log(typeof null)        // object**
+console.log(typeof {})          // object
+console.log(typeof [])          // object
+console.log(typeof function(){}) // function
+console.log(typeof NaN) // number
+
+// Primitive(immutable & stored by value)	
+// String, Number, BigInt, Boolean, Null, Undefined, Symbol
+let str = new String('hello')
+let str2 = 'hello'
+console.log(typeof str) // object
+console.log(typeof str2) // string
+console.log(typeof Symbol(2344)) // symbol - Unique and immutable (used as object keys)
+console.log(BigInt(2345674290433)) // bigint - For very large integers
+
+// Non-Primitive (mutable and stored by reference)
+// Object, Array, Function, Date, RegExp, etc.
+console.log(typeof new Object({name: 'joy', age: 23})) // object
+console.log(typeof new Array()) // object
+
+```
+
+## Type Convertions in JS
+```javascript
+// Falsy values: false, 0, -0, 0n, '', null, undefined, NaN
+// Truly values: 'hello', -1, 42, 3.14, [], {}, function(){}, Infinity
+
+// converting to Number
+let score = '33' // 33
+score = '33abc' // NaN
+score = null // 0
+score = NaN // NaN
+score = {} // NaN
+score = [] // 0 **
+score = [10] // 10
+score = [10, 2, 4] // NaN
+score = undefined // NaN 
+
+// converting to Boolean
+score = '33' // true
+score = '' // false **
+score = null // false
+score = NaN // false
+score = {} // true **
+score = {name: 'joy'} // true
+score = [] // true **
+score = [10, 2, 4] // true
+score = undefined // false **
+score = 1 // true
+score = 0 // false
+
+// converting to String
+score = 33 // '33'
+score = null // 'null'
+score = NaN // 'NaN'
+score = {} // '[object Object]'
+score = [] // '' **
+score = [10, 2, 4] // '10, 2, 4'
+score = undefined // 'undefined'
+
+```
+
+## Weired Coercion in JS
+```javascript
+// type coercion:
+// + operator is special—it triggers string concatenation if either operand is a string.
+// -, *, /, etc. always convert to numbers.
+
+console.log(2 + 2 + '3') // '43'
+console.log(2 + '3') // '23'
+console.log('2' + 2 + 2) // '222'
+console.log('2' + 3) // '23'
+console.log(2 + '3' + 2) // '232'
+console.log(+('3') + 2 ) // 5
+
+console.log(false + true) // 0 + 1 = 1
+console.log(false - true) // 0 - 1 = -1
+console.log(true + 1) // 1 + 1 = 2
+console.log([] + []) // '' + '' = ''
+console.log([] - []) // '' - '' -> 0 - 0 = 0
+console.log([] + 1) // '' + 1 = '1'
+console.log(1 + []) // 1 + '' = '1'
+console.log({} + {}) // [object Object][object Object]
+console.log({} + []) // [object Object]
+console.log([] + {}) // [object Object]
+console.log([] - 1) // '' -> 0 - 1 => -1
+console.log([1] - 1) // [1] -> '1' -> 1 - 1 => 0
+console.log(1 + NaN) // NaN
+console.log(null + null) // 0 + 0 = 0
+
+// more
+console.log([1] + [2, 3]) // '1' + '2,3' => '12,3'
+console.log([1] - [2, 3]) // '1' - '2, 3' -> 1 - NaN => NaN
+console.log([] + null) // '' + null => 'null'
+console.log([] - null) // '' - 0 -> 0 - 0 => 0
+```
