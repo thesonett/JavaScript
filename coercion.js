@@ -32,3 +32,4 @@ console.log([1] + [2, 3]) // '1' + '2,3' => '12,3'
 console.log([1] - [2, 3]) // '1' - '2, 3' -> 1 - NaN => NaN
 console.log([] + null) // '' + null => 'null'
 console.log([] - null) // '' - 0 -> 0 - 0 => 0
+console.log({} - 1) // NaN
