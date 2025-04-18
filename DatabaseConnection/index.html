@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body style="background-color: #313131; color: #fff; text-align: center;">
+    <h1>Welcome to Database Management Example</h1>
+    <div id="root"></div>
+</body>
+<script>
+    async function fetchData() {
+        const response = await fetch('http://localhost:3000/users');
+        return await response.json();
+    }
+
+    fetchData().then(dataset => {
+        console.log(dataset);
+
+        const root = document.getElementById('root');
+
+        dataset.forEach(user => {
+            const h2 = document.createElement('h2');
+            h2.textContent = `ID: ${user.user_id}, Name: ${user.name}, Email: ${user.email}, Gender: ${user.gender}`;
+            h2.style.margin = '20px 0';
+            root.appendChild(h2);
+        });
+    }).catch(err => {
+        console.error('Error fetching data:', err);
+        document.getElementById('root').textContent = 'Failed to load data.';
+    });
+</script>
+</html>

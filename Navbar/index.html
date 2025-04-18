@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body style="background-color: #313131; color: #fff;">
+    <div class="container">
+        <nav class="navbar">
+            <div id="logo"><img src="https://getbootstrap.com/docs/4.0/assets/brand/bootstrap-solid.svg" alt="" width="30px"></div>
+
+            <ul id="links">
+                <li><a href="">Home</a></li>
+                <li><a href="">Products</a></li>
+                <li><a href="">About</a></li>
+                <li><a href="">Contact</a></li>
+            </ul>
+
+            <div id="bars"><i class="fa-solid fa-bars"></i></div>
+            <div id="close"><i class="fa-solid fa-x"></i></div>
+        </nav>
+    </div>
+</body>
+<script>
+    const bars = document.getElementById('bars')
+    const close = document.getElementById('close')
+    const links = document.getElementById('links')
+    
+    bars.addEventListener('click', (e)=> {
+        links.style.display = 'flex'
+        bars.style.display = 'none'
+        close.style.display = 'block'
+    })
+
+    close.addEventListener('click', (e)=> {
+        links.style.display = 'none'
+        bars.style.display = 'block'
+        close.style.display = 'none'
+    })
+
+
+</script>
+</html>
