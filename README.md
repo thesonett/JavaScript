@@ -288,3 +288,119 @@ console.log(myString.slice(5, myString.length)) // World
 console.log(myString.slice(-5, myString.length)) // World
 ```
 
+# Numbers in js
+```js
+let num1 = 2098990;
+console.table([typeof num1, num1]);
+
+// num1.toLocaleString() vs num1.toString()
+console.log(num1.toString()); // Just plain conversion // 2098990
+console.log(num1.toLocaleString("en-IN", { currency: "IND" })); // 20,98,990
+// Adds things like commas, currency, language-based formatting and also you can pass options for formatting.
+
+console.log(num1.toFixed(2)) // 2098990.00
+
+num1 = 20.500
+console.log(num1.toPrecision(2)) // 21
+// give me 2 digits of meaningful value
+
+
+const num2 = new Number(300) // object
+console.table([typeof num2, num2.valueOf()]) // 'object' 300
+console.log(typeof num2.valueOf()) // valueOf() is a built-in method that returns the primitive value of an object.
+
+
+// Maths in js
+console.log(Math.random())
+console.log(Math.floor(Math.random() * 10 + 1))
+
+console.log(Math.floor(24.9)) // 24 // towards down!
+console.log(Math.ceil(24.4)) // 25 // towards up!
+
+console.log(Math.round(24.4)) // 24 // rounds down!
+console.log(Math.round(24.5)) // 25 // If the decimal is .5 or higher, it rounds up!
+```
+
+# Date in js
+```js
+const myDate = new Date()
+console.log(myDate)
+console.log(myDate.toString())
+console.log(myDate.toLocaleString()) // 4/19/2025, 1:37:59 PM
+console.log(myDate.toLocaleString('default', {month: 'long', })) // April
+console.log(myDate.toTimeString())
+
+console.log(myDate.getTime()) // gives miliseconds
+console.log(Math.floor(myDate.getTime() / 1000)) // seconds
+
+// Timestamp: represents a specific date and time. It is often used to record when a particular event occurred.
+console.log(Date.now()) // gives miliseconds
+
+
+// Q. Print all the tuesdays from 2025 till now.
+function allTheTuesdayDates() {
+    const yearEndingDate = new Date('2025-12-31')
+    const yearStartedDate = new Date('2025-01-01')
+    const allTheTuesdayDates = []
+
+    while(yearStartedDate <= yearEndingDate) {
+        if(yearStartedDate.getDay() === 2) {
+            allTheTuesdayDates.push(yearStartedDate.toLocaleDateString('en-IN'))
+        }
+
+        yearStartedDate.setDate(yearStartedDate.getDate() + 1)
+    }
+
+    allTheTuesdayDates.forEach((data)=> {
+        console.log(data)
+    })
+}
+
+allTheTuesdayDates()
+
+// Q. How to manage dateTime for different location?
+const utcDate = new Date()
+console.log(utcDate.toLocaleString('en-IN', {timeZone: 'Asia/Kolkata'}))
+console.log(utcDate.toLocaleString('en-AU', {timeZone: 'Australia/Sydney'}))
+
+console.log(Intl.DateTimeFormat().resolvedOptions().timeZone); // This is how the app knows which user is in which time zone
+```
+
+# Arrays in js
+```js
+//1. JavaScript arrays are resizable and can contain a mix of different data types.
+// 2. JavaScript arrays are not associative arrays. array elements cannot be accessed using arbitrary strings as indexes but only by non-negative integers as indexes.
+// 3. JavaScript array-copy operations create shallow copies.
+
+const nums = [1, 2, 3, 5, 'Joy Saha', {age: 23}]
+nums.push(30.345) // adds into the last
+nums.unshift([3, 4, 5]) // adds into first element
+nums.shift() // removes first element
+console.log(nums.length) // prints length
+
+// slice vs splice
+let newArr = nums.slice(0, 3); // its returns a new array without changing the original array
+console.log(newArr) // [1, 2, 3]
+console.log(nums) // doesn't change
+
+newArr = nums.splice(0, 3) // it returns a new array + changes the original array!!
+console.log(newArr) // [1, 2, 3]
+console.log(nums) //  changes
+console.log('\n')
+
+// Array of strings
+const fruit = 'Mango'
+console.log(Array.isArray(fruit)) // false
+console.log(Array.from(fruit)) // [ 'M', 'o', 'n', 'g', 'o' ] // object type
+console.log(Array.of(fruit)) // ['Mango']
+
+
+// merging multiple arrays
+const marvel = ['Thor', 'Ironman', 'Captain']
+const dc = ['Superman', 'Flash', 'Batman']
+
+marvel.push(dc) // [ 'Thor', 'Ironman', 'Captain', [ 'Superman', 'Flash', 'Batman' ] ]
+console.log(marvel.flat()) // flat make array one dimentional, not modifies the original array
+newArr = [...marvel, ...dc] // [ 'Thor', 'Ironman', 'Captain', 'Superman', 'Flash', 'Batman' ]
+newArr = marvel.concat(dc) // [ 'Thor', 'Ironman', 'Captain', 'Superman', 'Flash', 'Batman' ]
+```
