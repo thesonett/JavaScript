@@ -403,4 +403,224 @@ marvel.push(dc) // [ 'Thor', 'Ironman', 'Captain', [ 'Superman', 'Flash', 'Batma
 console.log(marvel.flat()) // flat make array one dimentional, not modifies the original array
 newArr = [...marvel, ...dc] // [ 'Thor', 'Ironman', 'Captain', 'Superman', 'Flash', 'Batman' ]
 newArr = marvel.concat(dc) // [ 'Thor', 'Ironman', 'Captain', 'Superman', 'Flash', 'Batman' ]
+
+// Array of arrays
+const arr2d = [
+    [1, 2, 3, 4],
+    [6, 7, 8, 9],
+    [10, 11, 12, 13]
+]
+
+for(const [a, b, c, d] of arr2d) { // of gives values
+    console.log(a, b, c, d)
+}
+
+for(const i in arr2d) { // in gives indexs/keys
+    console.log(i, arr2d[i])
+}
+
+// Array.of() vs Array.from()
+console.log(Array.of(5)) // [5] // it can make a single value to array!
+console.log(Array.from(5)) // [] // not gonna work!
+
+console.log(Array.from('hello')) // [ 'h', 'e', 'l', 'l', 'o' ]
+console.log(Array.from([1, 2, 3, 5], (x)=> x * 2)) // [ 2, 4, 6, 10 ]
+```
+
+# Operators in js
+```js
+// Basic operators
+console.log(2 + 2) // 4
+console.log(2 * 9) // 18
+console.log((7 / 9).toFixed(2)) // 0.7777 -> 0.78
+console.log(7 % 9) // 7
+console.log(2 ** 3) // 8
+
+// comparisions
+// NOTE: Always use strict types like !== & ===
+console.log(2 != '2') // 2 != 2 -> false // '2' converts to number 2
+console.log(2 !== '2') // true // checks both value and type. As type not same, that's why it's true
+
+
+// nullish coalescing operator ??
+let name = 'Sonett'
+console.log(name ?? 'Joy') // if name is null or undefined, then print 'Joy'
+console.log(null ?? undefined) // undefined
+console.log(null ?? 'hello') // 'hello'
+console.log('Joy' ?? 'Sonett') // 'Joy'
+console.log(undefined ?? 'KK') // KK
+
+// instanceof
+class A {}
+class B extends A {
+    obj = {
+       name: 'Joy',
+       age: 23,
+    }
+}
+class C {}
+const objB = new B()
+console.log(objB instanceof B) // true
+console.log(objB instanceof A) // true // because B extends A
+console.log(objB instanceof C) // false
+
+// delete is only meant for object properties
+console.log(objB.obj.name) // 'Joy'
+delete objB.obj.name
+console.log(objB.obj.name) // undefined!!
+
+// in operator checks whether a property exists in an object
+console.log('age' in objB.obj) // true
+
+// spread operator
+const nums = [1, 2, 3, 4, 6, [9, 10, 31, 12]]
+const num2 = [...nums[5]] // shallow copy
+
+console.log(num2) // [ 9, 10, 31, 12 ]
+console.log(...num2) // 9 10 31 12
+
+const newArr = [...nums.slice(0, 5), ...num2, [78, 43, 23]].flat()
+for(let i in newArr) {
+    console.log(newArr.join(','))
+    break
+}
+```
+
+# Objects in js
+## What is an Object?
+- An object is a fundamental data type that allows you to store collections of key-value pairs. These key-value pairs are called properties.
+```js
+function printInfo({name, age, ...props}) {
+    console.table([name, age])
+    console.log(props)
+    
+    increaseAge({age, ...props})
+}
+
+function increaseAge({age, ...props}) {
+    // age = Number(age) // not gonna work as Symbol is a unique and immutable primitive, meant only for identity
+    age = Number(age.description)
+    age += 5
+    console.log('New age: ', age)
+    console.log(props)
+}
+
+const obj = new Object() // singleton object
+// object literals
+const loggedTime = Symbol()
+
+const JsUser = {
+    name: 'Sonett',
+    "full name": 'Joy Saha',
+    age: Symbol(25),
+    isLoggedIn: false,
+    [loggedTime]: 'key-time' // Symbol type data
+}
+
+console.log(JsUser.age)
+console.log(JsUser["full name"])
+
+console.log(JsUser.loggedTime) // not gonna work!
+console.log(JsUser[loggedTime]) // right way to print symbol
+
+printInfo(JsUser)
+console.log('\n')
+
+// example - 2
+Object.freeze(JsUser) // It will let you not to change any data
+JsUser.age = 80
+console.log(JsUser) // still age 25!
+
+
+console.log(Object.keys(JsUser))
+console.log(Object.values(JsUser))
+console.log(Object.entries(JsUser))
+
+for(const [key, value] of Object.entries(JsUser)) {
+    console.log(key, ":", value)
+}
+
+// example - 3
+let newObj = Object.assign({}, JsUser) // old way
+newObj = {...JsUser} // modern way
+newObj.name = 'Priya'
+delete newObj['full name']
+console.log(newObj)
+```
+
+# Functions in js
+```js
+function outerFunc() { // passing something -> parameters
+
+    function innerFunc() {
+        console.log('This is a inner function!')
+    }
+
+    return innerFunc
+}
+
+// console.log(outerFunc().innerFunc()) // not gonna work!
+// console.log(outerFunc.innerFunc()) // innerfunc is not globally accessed function!
+console.log(outerFunc()()) // works!
+const fn = outerFunc() // passing something -> arguments
+fn() // also works
+```
+
+# Loops
+```js
+// for...in → for objects
+// for...of → for iterables like Map, Set, Array, etc.
+// foreach
+
+// Arrays
+const nums = [1, 2, 3, 4, 5, 6]
+for(const index in nums) { // It works, because behind the scene, js arrays are objects!
+    console.log(index, ' ', nums[index])
+}
+
+for(const val of nums) {
+    console.log(val)
+}
+
+// Objects
+const User = {
+    name: 'Joy',
+    age: 23,
+    profession: 'engineer',
+    city: 'kolkata',
+    phoneNumber: [9073525312, 9836632842],
+}
+
+for(const key in User) {
+    console.log(key, ':', User[key])
+}
+
+// not gonna work as objects are not iterable
+// for(const {key, value} of User) {
+//     console.log(key, '', value)
+// }
+
+
+// Map
+const map = new Map()
+map.set('js', 'javascript')
+map.set('cpp', 'C++')
+map.set('py', 'Python')
+
+// ap is not an object with enumerable properties, so for...in skips it entirely.
+for(const i in map) {   
+    console.log(i) // prints nothing!
+}
+
+// works!
+for(const [i, val] of map) { // maps are iterable like arrays, set etc
+    console.log(i, ':', val)
+}
+
+// foreach
+const programming = ['js', 'cpp', 'c', 'python', 'csharp', 'dart']
+
+programming.forEach((item, index, arr) => {
+    console.log(item, ':', index, ':', arr)
+})
 ```

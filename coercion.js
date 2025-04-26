@@ -1,5 +1,10 @@
 // type coercion:
 // + operator is special—it triggers string concatenation if either operand is a string.
+    // If both are numbers → addition
+    // If both are strings → concatenation
+    // If both are booleans → converted to numbers → then addition
+    // But if one is a string, everything becomes a string
+    
 // -, *, /, etc. always convert to numbers.
 
 console.log(2 + 2 + '3') // '43'

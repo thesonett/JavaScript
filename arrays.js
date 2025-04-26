@@ -33,3 +33,26 @@ marvel.push(dc) // [ 'Thor', 'Ironman', 'Captain', [ 'Superman', 'Flash', 'Batma
 console.log(marvel.flat()) // flat make array one dimentional, not modifies the original array
 newArr = [...marvel, ...dc] // [ 'Thor', 'Ironman', 'Captain', 'Superman', 'Flash', 'Batman' ]
 newArr = marvel.concat(dc) // [ 'Thor', 'Ironman', 'Captain', 'Superman', 'Flash', 'Batman' ]
+
+
+// array of arrays
+const arr2d = [
+    [1, 2, 3, 4],
+    [6, 7, 8, 9],
+    [10, 11, 12, 13]
+]
+
+for(const [a, b, c, d] of arr2d) { // of gives values
+    console.log(a, b, c, d)
+}
+
+for(const i in arr2d) { // in gives indexs/keys
+    console.log(i, arr2d[i])
+}
+
+// Array.of() vs Array.from()
+console.log(Array.of(5)) // [5] // it can make a single value to array!
+console.log(Array.from(5)) // [] // not gonna work!
+
+console.log(Array.from('hello')) // [ 'h', 'e', 'l', 'l', 'o' ]
+console.log(Array.from([1, 2, 3, 5], (x)=> x * 2)) // [ 2, 4, 6, 10 ]

@@ -1,0 +1,61 @@
+body {
+    background-color: #313131;
+    color: #ffffff;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    padding: 20px;
+}
+
+table {
+    width: 90%;
+    margin: 30px auto;
+    border-collapse: collapse;
+    background-color: #444;
+}
+
+th, td {
+    padding: 12px 20px;
+    border: 1px solid #fff;
+    text-align: center;
+}
+
+th {
+    background-color: #555;
+}
+
+input[type="text"] {
+    padding: 10px;
+    margin: 10px 5px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    width: 250px;
+    background-color: #555;
+    color: white;
+    font-size: 16px;
+    outline: none;
+}
+
+input[type="text"]:focus {
+    border: 1px solid #4CAF50;
+    background-color: #666;
+}
+
+
+button {
+    padding: 10px 20px;
+    margin-top: 10px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+input::placeholder {
+    color: #ccc;
+}
