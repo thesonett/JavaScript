@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Recursive Categories</title>
+</head>
+<body style="background-color: #313131; color: #fff">
+  <div id="root"></div>
+
+  <script>
+    async function getData() {
+      const response = await fetch("http://localhost:3000/categories");
+      const data = await response.json();
+      return data;
+    }
+
+    function createList(items, parentId = 0) {
+      const ul = document.createElement('ul');
+
+      items.forEach(element => {
+        if (element.parentId === parentId) {
+          const li = document.createElement('li');
+          li.textContent = element.name;
+
+          const children = createList(items, element.id);
+
+          if (children.children.length > 0) {
+            console.log(children)
+            li.appendChild(children);
+          }
+
+          ul.appendChild(li);
+        }
+      });
+
+      return ul;
+    }
+
+    getData()
+      .then((dataSet) => {
+        const root = document.getElementById('root');
+        const ul = createList(dataSet, 0);
+        root.appendChild(ul);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  </script>
+</body>
+</html>

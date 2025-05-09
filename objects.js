@@ -54,3 +54,43 @@ newObj = {...JsUser} // modern way
 newObj.name = 'Priya'
 delete newObj['full name']
 console.log(newObj)
+console.log('\n')
+
+// example - 4
+const descriptor = Object.getOwnPropertyDescriptor(Math, 'PI')
+console.log(descriptor)
+
+const chai = {
+    name: 'ginger chai',
+    price: 20,
+    isAvailable: true
+}
+
+console.log(Object.getOwnPropertyDescriptor(chai, 'price'))
+
+Object.defineProperty(chai, 'price', {
+    value: 30,
+    enumerable: true,
+    configurable: false,
+    writable: true
+})
+
+Object.defineProperties(chai, {
+    name: {
+
+    },
+    price: {
+
+    },
+    isAvailable: {
+        value: false,
+        writable: false,
+        enumerable: true, // without true, it will not visible
+        configurable: false
+    }
+})
+
+console.log(Object.getOwnPropertyDescriptor(chai, 'price'))
+console.log(Object.getOwnPropertyDescriptor(chai, 'isAvailable'))
+console.log(chai)
+

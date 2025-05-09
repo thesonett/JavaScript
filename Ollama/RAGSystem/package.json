@@ -1,0 +1,30 @@
+{
+  "name": "ragsystem",
+  "version": "1.0.0",
+  "description": "",
+  "license": "ISC",
+  "author": "",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon index.js",
+    "test": "node index.js"
+  },
+  "dependencies": {
+    "@langchain/community": "^0.3.42",
+    "@langchain/core": "^0.3.53",
+    "@langchain/ollama": "^0.2.0",
+    "@langchain/textsplitters": "^0.1.0",
+    "@tuesdaycrowd/sentence-transformers": "^1.0.1",
+    "chromadb": "^2.4.3",
+    "elevenlabs": "^1.57.0",
+    "fastembed": "^1.14.4",
+    "langchain": "^0.3.24",
+    "ollama": "^0.5.15",
+    "pdf-lib": "^1.17.1",
+    "pdf-parse": "^1.1.1",
+    "pdfkit": "^0.17.1",
+    "pdfreader": "^3.0.7",
+    "unstructured-client": "^0.24.1"
+  }
+}

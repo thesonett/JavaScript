@@ -1,4 +1,3 @@
-// database.js
 const { createConnection } = require('mysql');
 require('dotenv').config()
 

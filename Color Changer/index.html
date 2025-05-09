@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            background-color: #313131;
+            color: #fff;
+        }
+
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-evenly;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .box {
+            height: 120px;
+            width: 120px;
+            background-color: #fff;
+            cursor: pointer;
+            border: 2px solid black;
+        }
+
+        #blue { background-color: blue; }
+        #red { background-color: red; }
+        #yellow { background-color: yellow; }
+        #green { background-color: green; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="box" id="blue"></div>
+        <div class="box" id="green"></div>
+        <div class="box" id="red"></div>
+        <div class="box" id="yellow"></div>
+    </div>
+</body>
+<script>
+    const body = document.querySelector('body')
+
+    document.getElementById('blue').addEventListener('click', (e)=> { body.style.backgroundColor = 'blue' })
+    document.getElementById('green').addEventListener('click', (e)=> { body.style.backgroundColor = 'green' })
+    document.getElementById('red').addEventListener('click', (e)=> { body.style.backgroundColor = 'red' })
+    document.getElementById('yellow').addEventListener('click', (e)=> { body.style.backgroundColor = 'yellow' })
+</script>
+</html>

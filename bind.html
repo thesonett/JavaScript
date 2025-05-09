@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button>Click Me</button>
+</body>
+<script>
+    class React {
+        constructor(client, library) {
+            this.client = client
+            this.library = library
+
+            // document.querySelector('button').addEventListener('click', this.handleEvent)
+            document.querySelector('button').addEventListener('click', this.handleEvent.bind(this))
+        }
+
+        handleEvent() {
+            console.log('clicked!')
+            console.log(this.client) // not gonna print without bind
+            console.log(this.library)
+        }
+    }
+
+    const react = new React('localhost:3000', 'root')
+</script>
+</html>

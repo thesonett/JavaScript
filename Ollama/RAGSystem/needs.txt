@@ -1,0 +1,15 @@
+npm i ollama
+npm i chromadb
+npm i pdf-lib
+npm i pdfreader
+npm i langchain
+npm i @langchain/core
+npm i @langchain/ollama
+npm i @langchain/community
+npm i @langchain/textsplitters
+npm i unstructured-client
+npm i fastembed
+npm i pdfkit
+npm install pdf-parse
+npm i @tuesdaycrowd/sentence-transformers
+npm i elevenlabs
