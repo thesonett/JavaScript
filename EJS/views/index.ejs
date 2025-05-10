@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 text-gray-900 h-screen flex flex-col">
+
+    <!-- Header -->
+    <header class="bg-blue-600 text-white py-4">
+        <h1 class="text-center text-2xl">Header</h1>
+    </header>
+
+    <!-- Navigation -->
+    <nav class="bg-gray-800 text-white p-4">
+        <div class="flex justify-center space-x-8">
+            <a href="/" class="hover:text-yellow-300">Home</a>
+            <a href="/about" class="hover:text-yellow-300">About</a>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="flex-grow my-8 mx-4">
+        <%- include(page) %>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-blue-600 text-white py-4 mt-8">
+        <h1 class="text-center text-lg">Footer</h1>
+    </footer>
+
+</body>
+</html>
